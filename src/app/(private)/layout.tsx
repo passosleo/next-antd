@@ -2,7 +2,11 @@
 import { Layout, Menu, Spin } from "antd";
 import Sider from "antd/lib/layout/Sider";
 import { Content, Footer, Header } from "antd/lib/layout/layout";
-import { DashboardOutlined, SettingOutlined } from "@ant-design/icons";
+import {
+  DashboardOutlined,
+  SettingOutlined,
+  LogoutOutlined,
+} from "@ant-design/icons";
 import { usePathname, useRouter } from "next/navigation";
 import { MenuItemType } from "antd/lib/menu/hooks/useItems";
 import { useAuthentication } from "@/contexts/auth";
@@ -13,6 +17,11 @@ export default function PrivateLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const [isLoading, setIsLoading] = useState(true);
+  const router = useRouter();
+  const pathname = usePathname();
+  const { isAuthenticated, logout } = useAuthentication();
+
   const menu: MenuItemType[] = [
     {
       key: "1",
@@ -28,12 +37,14 @@ export default function PrivateLayout({
       label: "Settings",
       onClick: () => router.push("/settings"),
     },
+    {
+      key: "3",
+      icon: <LogoutOutlined />,
+      title: "logout",
+      label: "Logout",
+      onClick: () => logout(),
+    },
   ];
-
-  const [isLoading, setIsLoading] = useState(true);
-  const router = useRouter();
-  const pathname = usePathname();
-  const { isAuthenticated } = useAuthentication();
 
   function handleSelectedMenuOption() {
     const path = pathname.split("/")[1];

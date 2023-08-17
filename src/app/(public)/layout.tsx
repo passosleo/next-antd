@@ -29,5 +29,9 @@ export default function PublicLayout({
     );
   }
 
-  return <Layout className="flex-1 bg-red-300 h-full">{children}</Layout>;
+  return (
+    <Layout className="bg-gray-200 h-full flex-1 items-center justify-center">
+      {children}
+    </Layout>
+  );
 }
