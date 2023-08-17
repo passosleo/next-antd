@@ -1,16 +1,24 @@
 "use client";
-import { Button, DatePicker, Typography, Select } from "antd";
+import { useAuthentication } from "@/contexts/auth";
+import { Layout, Spin } from "antd";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
-const { Title, Text } = Typography;
+export default function RootPage() {
+  const { isAuthenticated } = useAuthentication();
+  const router = useRouter();
 
-export default function Home() {
+  useEffect(() => {
+    if (isAuthenticated) {
+      router.push("/dashboard");
+    } else {
+      router.push("/login");
+    }
+  }, [isAuthenticated, router]);
+
   return (
-    <main className="flex min-h-screen flex-col items-center p-10 gap-5">
-      <Button type="primary">Button</Button>
-      <DatePicker />
-      <Title level={3}>Title</Title>
-      <Text>Text</Text>
-      <Select className="w-48" defaultValue="lucy" />
-    </main>
+    <Layout className="flex h-screen w-screen items-center justify-center">
+      <Spin spinning size="large" />
+    </Layout>
   );
 }

@@ -1,13 +1,13 @@
 "use client";
-import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import ptBR from "antd/locale/pt_BR";
 import { ConfigProvider } from "antd";
 import { StyleProvider } from "@ant-design/cssinjs";
-import "../../public/antd.min.css"; // add this line
+import "../../public/antd.min.css";
 import "./globals.css";
-import { theme } from "./theme";
+import { theme } from "../theme";
+import { AuthProvider } from "@/contexts/auth";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,9 +23,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body id="app" className={inter.className}>
         <ConfigProvider locale={ptBR} theme={theme}>
-          <StyleProvider hashPriority="high">{children}</StyleProvider>
+          <StyleProvider hashPriority="high">
+            <AuthProvider>{children}</AuthProvider>
+          </StyleProvider>
         </ConfigProvider>
       </body>
     </html>
