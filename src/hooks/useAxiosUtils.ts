@@ -1,7 +1,8 @@
 import { notification } from "antd";
-import Axios, { AxiosResponse } from "axios";
+import Axios, { AxiosInstance, AxiosResponse } from "axios";
 import { HOST } from "@/services/router";
 import { CustomAxiosError } from "@/services/types";
+import { setRequestAuth } from "@/utils/functions/request";
 
 export function useAxiosUtils() {
   type Props = {
@@ -16,7 +17,7 @@ export function useAxiosUtils() {
       headers: { responseType: "blob" },
     });
 
-    // if (withAuth) withAuthInstance(request);
+    if (withAuth) setRequestAuth(request);
 
     request.get(filePath).then((response: AxiosResponse) => {
       const urlBlob = window.URL.createObjectURL(new Blob([response.data]));
@@ -48,5 +49,6 @@ export function useAxiosUtils() {
 
     return { descriptionError };
   }
+
   return { handleAxiosError, handleDownload };
 }

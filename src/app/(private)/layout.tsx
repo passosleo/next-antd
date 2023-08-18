@@ -2,7 +2,12 @@
 import { Avatar, Layout, Menu, Spin, Typography } from "antd";
 import Sider from "antd/lib/layout/Sider";
 import { Content, Footer, Header } from "antd/lib/layout/layout";
-import { LogoutOutlined, MailOutlined, UserOutlined } from "@ant-design/icons";
+import {
+  LogoutOutlined,
+  MailOutlined,
+  MailFilled,
+  UserOutlined,
+} from "@ant-design/icons";
 import { usePathname, useRouter } from "next/navigation";
 import { MenuItemType } from "antd/lib/menu/hooks/useItems";
 import { useAuthentication } from "@/contexts/auth";
@@ -16,7 +21,8 @@ export default function PrivateLayout({
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
   const pathname = usePathname();
-  const { isAuthenticated, logout } = useAuthentication();
+  const { isAuthenticated, logout, user } = useAuthentication();
+  console.log("user", user);
 
   const menu: MenuItemType[] = [
     {
@@ -68,14 +74,14 @@ export default function PrivateLayout({
   return (
     <Layout className="min-h-screen">
       <Header className="bg-background-dark flex items-center justify-between border-b-[1px] border-b-gray-dark">
-        <div className="flex gap-5">
-          <MailOutlined />
-          <Typography.Text>Mail Master</Typography.Text>
+        <div className="flex gap-3 items-center text-3xl text-primary-normal cursor-pointer">
+          <MailFilled />
+          <h1 className="text-lg text-heading m-0">Mail Master</h1>
         </div>
         <Avatar className="cursor-pointer bg-primary-dark">LP</Avatar>
       </Header>
       <Layout>
-        <Sider className="bg-background-dark border-r-[1px] border-r-gray-dark">
+        <Sider className="bg-background-dark border-r-[1px] border-r-gray-dark py-5">
           <Menu
             defaultSelectedKeys={handleSelectedMenuOption()}
             className="bg-background-dark p-2 border-none"
@@ -85,9 +91,9 @@ export default function PrivateLayout({
         <Content className="p-5">
           <main>{children}</main>
         </Content>
-        <Sider className="bg-background-dark"></Sider>
+        {/* <Sider className="bg-background-dark"></Sider> */}
       </Layout>
-      <Footer className="bg-background-dark">footer</Footer>
+      {/* <Footer className="bg-background-dark">footer</Footer> */}
     </Layout>
   );
 }

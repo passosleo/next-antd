@@ -6,13 +6,14 @@ const AuthContext = createContext({
   login: (data: any) => {},
   logout: () => {},
   isLoggingIn: false,
+  user: null,
 });
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const { isAuthenticated, isLoggingIn, login, logout } = useAuth();
+  const { isAuthenticated, isLoggingIn, login, logout, user } = useAuth();
   return (
     <AuthContext.Provider
-      value={{ isAuthenticated, login, logout, isLoggingIn }}
+      value={{ isAuthenticated, login, logout, isLoggingIn, user }}
     >
       {children}
     </AuthContext.Provider>

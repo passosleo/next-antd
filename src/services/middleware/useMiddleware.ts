@@ -2,6 +2,7 @@ import { mountUrl } from "@/utils/functions/url";
 import Axios, { AxiosRequestConfig } from "axios";
 import { Params, RoutesName } from "../types";
 import { HOST, routes } from "../router";
+import { setRequestAuth } from "@/utils/functions/request";
 
 type RequestAxiosProps<PayloadType> = {
   config?: AxiosRequestConfig;
@@ -37,8 +38,8 @@ export function useMiddleware() {
 
     const urlWithParams = mountUrl(uri, HOST, params, query);
 
-    // if (!!listenHeaders && listenHeaders.includes("Authorization"))
-    //   withAuthInstance(request);
+    if (!!listenHeaders && listenHeaders.includes("Authorization"))
+      setRequestAuth(request);
 
     switch (method) {
       case "GET":

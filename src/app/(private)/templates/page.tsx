@@ -53,6 +53,7 @@ export default function Templates() {
           },
         ]}
         dataSource={templates}
+        rowKey={(record) => record.templateId}
       />
     </>
   );
