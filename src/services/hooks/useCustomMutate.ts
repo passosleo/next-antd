@@ -55,11 +55,12 @@ export function useCustomMutate<ReturnData, Payload = any>({
       payload,
       params,
       query,
-    }).then((res) => res.data);
+    }).then((res) => res.data) as Promise<DefaultResponse<ReturnData>>;
   }
 
   return useMutation(handleMutate, {
-    onSuccess: (data) => onSuccess(data as DefaultResponse<ReturnData>),
+    onSuccess: (data: DefaultResponse<ReturnData>) =>
+      onSuccess(data as DefaultResponse<ReturnData>),
     onError,
   });
 }

@@ -1,7 +1,6 @@
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { useRouter } from "next/navigation";
 import { useAuthService } from "./useAuthService";
-import { AuthToken } from "../types";
 import { parseJwt } from "@/utils/functions/jwt";
 import { useState } from "react";
 
@@ -25,11 +24,11 @@ export function useAuth() {
     mutateLogin(
       { payload: data },
       {
-        onSuccess: (res: any) => {
-          const session = res?.data as AuthToken;
-          const decoded = parseJwt(session.token);
-          storeValue("session", { ...session, ...decoded });
-          setCurrentUser(decoded.user);
+        onSuccess: (res) => {
+          const jwt = res.data;
+          const { user, ...session } = parseJwt(jwt.token);
+          storeValue("session", { ...jwt, ...session, user });
+          setCurrentUser(user);
           router.refresh();
         },
       }
