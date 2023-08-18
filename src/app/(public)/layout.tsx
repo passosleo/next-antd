@@ -30,7 +30,7 @@ export default function PublicLayout({
   }
 
   return (
-    <Layout className="bg-gray-200 h-full flex-1 items-center justify-center">
+    <Layout className="bg-gray-200 h-screen flex items-center justify-center">
       {children}
     </Layout>
   );

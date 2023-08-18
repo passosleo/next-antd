@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 
 const AuthContext = createContext({
   isAuthenticated: false,
-  login: () => {},
+  login: (data: any) => {},
   logout: () => {},
 });
 
@@ -13,7 +13,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const isAuthenticated = getStoredValue("auth");
   const router = useRouter();
 
-  function login() {
+  function login(data: any) {
+    console.log("login ~ data", data);
     storeValue("auth", true);
     router.refresh();
   }
