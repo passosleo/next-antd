@@ -2,16 +2,15 @@
 import { CustomForm } from "@/components/CustomForm";
 import { useAuthentication } from "@/contexts/auth";
 import { loginSchema } from "@/schemas/loginSchema";
-import { Layout, Typography } from "antd";
+import { Layout } from "antd";
 import { FormContent } from "./components/FormContent";
+import { Brand } from "@/components/Brand";
 
 export default function Login() {
   const { login, isLoggingIn } = useAuthentication();
   return (
     <Layout className="max-w-md w-full max-h-96 p-10 flex flex-col justify-between rounded-xl shadow-lg">
-      <Typography.Title level={2} className="text-center text-heading">
-        Login
-      </Typography.Title>
+      <Brand className="mx-auto" />
 
       <CustomForm onSubmit={(data) => login(data)} zodSchema={loginSchema}>
         <FormContent isLoading={isLoggingIn} />

@@ -1,17 +1,13 @@
 "use client";
-import { Avatar, Layout, Menu, Spin, Typography } from "antd";
+import { Avatar, Layout, Menu, Spin } from "antd";
 import Sider from "antd/lib/layout/Sider";
-import { Content, Footer, Header } from "antd/lib/layout/layout";
-import {
-  LogoutOutlined,
-  MailOutlined,
-  MailFilled,
-  UserOutlined,
-} from "@ant-design/icons";
+import { Content, Header } from "antd/lib/layout/layout";
+import { LogoutOutlined, MailOutlined, UserOutlined } from "@ant-design/icons";
 import { usePathname, useRouter } from "next/navigation";
 import { MenuItemType } from "antd/lib/menu/hooks/useItems";
 import { useAuthentication } from "@/contexts/auth";
 import { useEffect, useState } from "react";
+import { Brand } from "@/components/Brand";
 
 export default function PrivateLayout({
   children,
@@ -74,10 +70,7 @@ export default function PrivateLayout({
   return (
     <Layout className="min-h-screen">
       <Header className="bg-background-dark flex items-center justify-between border-b-[1px] border-b-gray-dark">
-        <div className="flex gap-3 items-center text-3xl text-primary-normal cursor-pointer">
-          <MailFilled />
-          <h1 className="text-lg text-heading m-0">Mail Master</h1>
-        </div>
+        <Brand />
         <Avatar className="cursor-pointer bg-primary-dark">LP</Avatar>
       </Header>
       <Layout>
