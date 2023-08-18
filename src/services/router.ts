@@ -13,6 +13,11 @@ const routes = {
     uri: "/mail-template",
     listenHeaders: ["Authorization"],
   },
+  getUsers: {
+    method: "GET",
+    uri: "/user",
+    listenHeaders: ["Authorization"],
+  },
 };
 
 export { HOST, routes };

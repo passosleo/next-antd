@@ -3,7 +3,7 @@ export type Template = {
   name: string;
   file: string;
   fileUrl: string;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: Date;
+  updatedAt: Date;
   isEnable: boolean;
 };
