@@ -4,7 +4,7 @@ import { Controller, RegisterOptions } from "react-hook-form";
 import { ConnectForm } from "../ConnectForm";
 import { Input as InputAntd, Typography } from "antd";
 import { useCustomInput } from "./hooks/useCustomInput";
-import { ErrorHookForm, ErrorsHookForm } from "@/types/hookForm";
+import { ErrorHookForm, ErrorsHookForm } from "@/types/react-hook-form";
 
 export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   customRef?: React.LegacyRef<HTMLInputElement>;
@@ -112,7 +112,7 @@ export function CustomInput({
                       "flex flex-row gap-2 items-center pl-4 h-max mt-2"
                     }
                   >
-                    <label className={"text-alerts-red text-xs leading-4"}>
+                    <label className={"text-red-500 text-xs leading-4"}>
                       {(hasError?.message || error) as string}
                     </label>
                   </div>

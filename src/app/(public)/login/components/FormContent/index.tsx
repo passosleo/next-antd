@@ -3,7 +3,11 @@ import { CustomInput } from "@/components/CustomInput";
 import { Layout } from "antd";
 import { useFormContext } from "react-hook-form";
 
-export function FormContent() {
+type Props = {
+  isLoading?: boolean;
+};
+
+export function FormContent({ isLoading }: Props = { isLoading: false }) {
   const hookFormMethods = useFormContext();
   return (
     <Layout className="flex flex-col gap-10">
@@ -12,7 +16,7 @@ export function FormContent() {
         <CustomInput name="password" label="Password" type="password" />
       </Layout>
 
-      <CustomButton htmlType="submit" className="h-10">
+      <CustomButton htmlType="submit" loading={isLoading} className="h-10">
         Login
       </CustomButton>
     </Layout>

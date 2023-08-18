@@ -8,6 +8,7 @@ import "../../public/antd.min.css";
 import "./globals.css";
 import { theme } from "../theme";
 import { AuthProvider } from "@/contexts/auth";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,14 +22,23 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false,
+      },
+    },
+  });
   return (
     <html lang="en">
       <body id="app" className={inter.className}>
-        <ConfigProvider locale={ptBR} theme={theme}>
-          <StyleProvider hashPriority="high">
-            <AuthProvider>{children}</AuthProvider>
-          </StyleProvider>
-        </ConfigProvider>
+        <QueryClientProvider client={queryClient}>
+          <ConfigProvider locale={ptBR} theme={theme}>
+            <StyleProvider hashPriority="high">
+              <AuthProvider>{children}</AuthProvider>
+            </StyleProvider>
+          </ConfigProvider>
+        </QueryClientProvider>
       </body>
     </html>
   );

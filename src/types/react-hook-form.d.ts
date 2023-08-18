@@ -1,4 +1,4 @@
-import { GlobalError } from "react-hook-form/dist/types";
+import type { GlobalError } from "react-hook-form/dist/types";
 
 export type ErrorsHookForm = Record<string, GlobalError> & GlobalError;
 
