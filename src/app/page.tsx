@@ -10,7 +10,7 @@ export default function RootPage() {
 
   useEffect(() => {
     if (isAuthenticated) {
-      router.push("/dashboard");
+      router.push("/templates");
     } else {
       router.push("/login");
     }

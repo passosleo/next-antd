@@ -1,9 +1,10 @@
 import { ThemeConfig } from "antd";
+import { colors } from "./colors";
 
 export const theme: ThemeConfig = {
   token: {
-    colorPrimary: "#31987e",
-    colorInfo: "#31987e",
+    colorPrimary: colors.primary.normal,
+    colorInfo: colors.primary.normal,
     controlOutline: "none",
     screenXS: 480,
     screenXSMin: 480,

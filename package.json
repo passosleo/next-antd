@@ -21,6 +21,7 @@
     "axios": "^1.4.0",
     "eslint": "8.47.0",
     "eslint-config-next": "13.4.13",
+    "moment": "^2.29.4",
     "next": "13.4.13",
     "postcss": "8.4.27",
     "qs": "^6.11.2",

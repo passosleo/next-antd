@@ -1,16 +1,16 @@
-const HOST = "http://localhost:4000";
+const HOST = "http://localhost:4000/api/v1";
 
 const routes = {
   login: {
     method: "POST",
-    uri: "/login",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    uri: "/auth",
+    // headers: {
+    //   "Content-Type": "application/json",
+    // },
   },
-  signup: {
+  getTemplates: {
     method: "GET",
-    uri: "/signup",
+    uri: "/mail-template",
     listenHeaders: ["Authorization"],
   },
 };

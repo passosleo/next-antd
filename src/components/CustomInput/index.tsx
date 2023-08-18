@@ -112,7 +112,7 @@ export function CustomInput({
                       "flex flex-row gap-2 items-center pl-4 h-max mt-2"
                     }
                   >
-                    <label className={"text-red-500 text-xs leading-4"}>
+                    <label className={"text-alert text-xs leading-4"}>
                       {(hasError?.message || error) as string}
                     </label>
                   </div>

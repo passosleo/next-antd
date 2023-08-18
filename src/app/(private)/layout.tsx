@@ -1,12 +1,8 @@
 "use client";
-import { Layout, Menu, Spin } from "antd";
+import { Avatar, Layout, Menu, Spin, Typography } from "antd";
 import Sider from "antd/lib/layout/Sider";
 import { Content, Footer, Header } from "antd/lib/layout/layout";
-import {
-  DashboardOutlined,
-  SettingOutlined,
-  LogoutOutlined,
-} from "@ant-design/icons";
+import { LogoutOutlined, MailOutlined, UserOutlined } from "@ant-design/icons";
 import { usePathname, useRouter } from "next/navigation";
 import { MenuItemType } from "antd/lib/menu/hooks/useItems";
 import { useAuthentication } from "@/contexts/auth";
@@ -25,17 +21,17 @@ export default function PrivateLayout({
   const menu: MenuItemType[] = [
     {
       key: "1",
-      icon: <DashboardOutlined />,
-      title: "dashboard",
-      label: "Dashboard",
-      onClick: () => router.push("/dashboard"),
+      icon: <MailOutlined />,
+      title: "templates",
+      label: "Templates",
+      onClick: () => router.push("/templates"),
     },
     {
       key: "2",
-      icon: <SettingOutlined />,
-      title: "settings",
-      label: "Settings",
-      onClick: () => router.push("/settings"),
+      icon: <UserOutlined />,
+      title: "users",
+      label: "Users",
+      onClick: () => router.push("/users"),
     },
     {
       key: "3",
@@ -71,19 +67,27 @@ export default function PrivateLayout({
 
   return (
     <Layout className="min-h-screen">
-      <Header className="bg-gray-300">header</Header>
+      <Header className="bg-background-dark flex items-center justify-between border-b-[1px] border-b-gray-dark">
+        <div className="flex gap-5">
+          <MailOutlined />
+          <Typography.Text>Mail Master</Typography.Text>
+        </div>
+        <Avatar className="cursor-pointer bg-primary-dark">LP</Avatar>
+      </Header>
       <Layout>
-        <Sider className="bg-gray-200">
+        <Sider className="bg-background-dark border-r-[1px] border-r-gray-dark">
           <Menu
             defaultSelectedKeys={handleSelectedMenuOption()}
-            className="bg-gray-200 p-2"
+            className="bg-background-dark p-2 border-none"
             items={menu}
           />
         </Sider>
-        <Content className="p-5">{children}</Content>
-        <Sider className="bg-gray-200"></Sider>
+        <Content className="p-5">
+          <main>{children}</main>
+        </Content>
+        <Sider className="bg-background-dark"></Sider>
       </Layout>
-      <Footer className="bg-gray-300">footer</Footer>
+      <Footer className="bg-background-dark">footer</Footer>
     </Layout>
   );
 }

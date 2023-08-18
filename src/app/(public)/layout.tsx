@@ -15,7 +15,7 @@ export default function PublicLayout({
 
   useEffect(() => {
     if (isAuthenticated) {
-      router.push("/dashboard");
+      router.push("/templates");
     } else {
       setIsLoading(false);
     }
@@ -30,7 +30,7 @@ export default function PublicLayout({
   }
 
   return (
-    <Layout className="bg-gray-200 h-screen flex items-center justify-center">
+    <Layout className="bg-background-dark h-screen flex items-center justify-center">
       {children}
     </Layout>
   );

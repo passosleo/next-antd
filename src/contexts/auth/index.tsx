@@ -1,31 +1,19 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import { useLocalStorage } from "@/hooks/useLocalStorage";
-import { useRouter } from "next/navigation";
+import { createContext, useContext } from "react";
+import { useAuth } from "./hooks/useAuth";
 
 const AuthContext = createContext({
   isAuthenticated: false,
   login: (data: any) => {},
   logout: () => {},
+  isLoggingIn: false,
 });
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const { getStoredValue, storeValue, clearStorage } = useLocalStorage();
-  const isAuthenticated = getStoredValue("auth");
-  const router = useRouter();
-
-  function login(data: any) {
-    console.log("login ~ data", data);
-    storeValue("auth", true);
-    router.refresh();
-  }
-
-  function logout() {
-    clearStorage();
-    router.refresh();
-  }
-
+  const { isAuthenticated, isLoggingIn, login, logout } = useAuth();
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+    <AuthContext.Provider
+      value={{ isAuthenticated, login, logout, isLoggingIn }}
+    >
       {children}
     </AuthContext.Provider>
   );

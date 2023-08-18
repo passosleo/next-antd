@@ -20,8 +20,6 @@ export function useAxiosUtils() {
 
     request.get(filePath).then((response: AxiosResponse) => {
       const urlBlob = window.URL.createObjectURL(new Blob([response.data]));
-      console.log(urlBlob);
-      console.log(response);
       const link = document.createElement("a");
       link.href = urlBlob;
       link.setAttribute("download", filename);
@@ -36,7 +34,7 @@ export function useAxiosUtils() {
     const typedError = error as CustomAxiosError;
     const responseData = typedError.response?.data;
 
-    const responseError = (responseData && responseData.message) as string;
+    const responseError = (responseData && responseData.error) as string;
 
     const descriptionError =
       responseError && typeof responseError === "string"
